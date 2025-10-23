@@ -1,10 +1,11 @@
-import API_BASE_URL, { getAuthHeader } from "./config";
+import API_BASE_URL from "./config";
 
+// Get all shops
 export const getShops = async () => {
   try {
     const res = await fetch(`${API_BASE_URL}/shops`, {
-      headers: getAuthHeader(),
-      credentials: 'include'
+      method: "GET",
+      credentials: "include",
     });
     return res.ok ? await res.json() : [];
   } catch (err) {
@@ -13,12 +14,13 @@ export const getShops = async () => {
   }
 };
 
+// Create shop
 export const createShop = async (shop) => {
   try {
     const res = await fetch(`${API_BASE_URL}/shops`, {
       method: "POST",
-      headers: { "Content-Type": "application/json", ...getAuthHeader() },
-      credentials: 'include',
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
       body: JSON.stringify(shop),
     });
     return res.ok ? await res.json() : null;
@@ -28,12 +30,13 @@ export const createShop = async (shop) => {
   }
 };
 
+// Update shop
 export const updateShop = async (id, shop) => {
   try {
     const res = await fetch(`${API_BASE_URL}/shops/${id}`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json", ...getAuthHeader() },
-      credentials: 'include',
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
       body: JSON.stringify(shop),
     });
     return res.ok ? await res.json() : null;
@@ -43,12 +46,12 @@ export const updateShop = async (id, shop) => {
   }
 };
 
+// Delete shop
 export const deleteShop = async (id) => {
   try {
     const res = await fetch(`${API_BASE_URL}/shops/${id}`, {
       method: "DELETE",
-      headers: getAuthHeader(),
-      credentials: 'include',
+      credentials: "include",
     });
     return res.ok ? await res.json() : null;
   } catch (err) {

@@ -1,10 +1,11 @@
-import API_BASE_URL, { getAuthHeader } from "./config";
+import API_BASE_URL from "./config";
 
+// Get all boxes
 export const getBoxes = async () => {
   try {
     const res = await fetch(`${API_BASE_URL}/boxes`, {
-      headers: getAuthHeader(),
-      credentials: 'include'
+      method: "GET",
+      credentials: "include",
     });
     const data = await res.json();
     return Array.isArray(data) ? data : [];
@@ -14,66 +15,64 @@ export const getBoxes = async () => {
   }
 };
 
+// Create box
 export const createBox = async (box) => {
   try {
     const res = await fetch(`${API_BASE_URL}/boxes`, {
       method: "POST",
-      headers: { "Content-Type": "application/json", ...getAuthHeader() },
-      credentials: 'include',
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
       body: JSON.stringify(box),
     });
-    const data = await res.json();
-    return data;
+    return res.ok ? await res.json() : null;
   } catch (err) {
     console.error("Failed to create box:", err);
-    return { message: "Failed to create box" };
+    return null;
   }
 };
 
+// Update box
 export const updateBox = async (id, box) => {
   try {
     const res = await fetch(`${API_BASE_URL}/boxes/${id}`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json", ...getAuthHeader() },
-      credentials: 'include',
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
       body: JSON.stringify(box),
     });
-    const data = await res.json();
-    return data;
+    return res.ok ? await res.json() : null;
   } catch (err) {
     console.error("Failed to update box:", err);
-    return { message: "Failed to update box" };
+    return null;
   }
 };
 
+// Delete box
 export const deleteBox = async (id) => {
   try {
     const res = await fetch(`${API_BASE_URL}/boxes/${id}`, {
       method: "DELETE",
-      headers: getAuthHeader(),
-      credentials: 'include',
+      credentials: "include",
     });
-    const data = await res.json();
-    return data;
+    return res.ok ? await res.json() : null;
   } catch (err) {
     console.error("Failed to delete box:", err);
-    return { message: "Failed to delete box" };
+    return null;
   }
 };
 
-// ✅ NEW: Update maintenance alert
+// Update maintenance alert
 export const updateAlert = async (id, alertDays, action) => {
   try {
     const res = await fetch(`${API_BASE_URL}/boxes/${id}/alert`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json", ...getAuthHeader() },
-      credentials: 'include',
+      headers: { "Content-Type": "application/json" },
+      credentials: "include",
       body: JSON.stringify({ alertDays, action }),
     });
-    const data = await res.json();
-    return data;
+    return res.ok ? await res.json() : null;
   } catch (err) {
     console.error("Failed to update alert:", err);
-    return { message: "Failed to update alert" };
+    return null;
   }
 };

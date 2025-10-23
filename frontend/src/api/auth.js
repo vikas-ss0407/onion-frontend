@@ -1,15 +1,17 @@
 import API_BASE_URL from "./config";
 
+// Signup
 export const signup = async (data) => {
   const res = await fetch(`${API_BASE_URL}/auth/signup`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    credentials: "include",
+    credentials: "include", // send cookies
     body: JSON.stringify(data),
   });
   return res.json();
 };
 
+// Login
 export const login = async (data) => {
   const res = await fetch(`${API_BASE_URL}/auth/login`, {
     method: "POST",
@@ -20,6 +22,7 @@ export const login = async (data) => {
   return res.json();
 };
 
+// Logout
 export const logout = async () => {
   const res = await fetch(`${API_BASE_URL}/auth/logout`, {
     method: "POST",
@@ -28,7 +31,7 @@ export const logout = async () => {
   return res.json();
 };
 
-// No need to pass userId now, token handles it
+// Update Profile
 export const updateProfile = async (data) => {
   const res = await fetch(`${API_BASE_URL}/auth/update`, {
     method: "PUT",
@@ -39,6 +42,7 @@ export const updateProfile = async (data) => {
   return res.json();
 };
 
+// Get Profile
 export const getProfile = async () => {
   const res = await fetch(`${API_BASE_URL}/auth/profile`, {
     method: "GET",

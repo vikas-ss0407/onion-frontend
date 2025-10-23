@@ -1,8 +1,6 @@
-const API_BASE_URL = "https://onion-backend-gmab.onrender.com/api"; 
+// config.js
 
-export const getAuthHeader = () => {
-  const token = localStorage.getItem("token");
-  return token ? { Authorization: `Bearer ${token}` } : {};
-};
+// Deployed backend URL
+const API_BASE_URL = "https://onion-back.onrender.com/api";
 
 export default API_BASE_URL;
