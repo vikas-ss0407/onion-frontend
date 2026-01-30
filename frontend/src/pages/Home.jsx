@@ -17,32 +17,26 @@ import {
   Monitor,
 } from "lucide-react";
 
-// --- Custom Blue Palette (derived from the provided image) ---
-// Approximate shades for the new blue:
-const NEW_BLUE_50 = "#e0f2fe"; // Lightest for backgrounds like indigo-50
-const NEW_BLUE_100 = "#bfdbfe"; // Lighter for hovers
+const NEW_BLUE_50 = "#e0f2fe"; 
+const NEW_BLUE_100 = "#bfdbfe"; 
 const NEW_BLUE_200 = "#93c5fd";
 const NEW_BLUE_300 = "#60a5fa";
 const NEW_BLUE_400 = "#3b82f6";
-const NEW_BLUE_500 = "#2563eb"; // Main button/link blue (as in the ThingsDock buttons)
-const NEW_BLUE_600 = "#1d4ed8"; // Darker for hover states, active nav links
-const NEW_BLUE_700 = "#1e40af"; // Darkest for text/logo, hero background
+const NEW_BLUE_500 = "#2563eb"; 
+const NEW_BLUE_600 = "#1d4ed8"; 
+const NEW_BLUE_700 = "#1e40af"; 
 const NEW_BLUE_800 = "#1e3a8a";
-const NEW_BLUE_900 = "#1e3a8a"; // Very dark blue
+const NEW_BLUE_900 = "#1e3a8a"; 
 
-// Custom Accent Color (now standardized to Dark Blue)
 const ACCENT_COLOR_BASE = NEW_BLUE_600; 
 const ACCENT_COLOR_HOVER = NEW_BLUE_700;
 const ACCENT_TEXT_COLOR = "white"; 
 
-// 🚀 NEW COLOR: Amber/Yellow for the prominent CTA button
-const CTA_AMBER_BASE = "#fbbf24"; // Tailwind amber-400
-const CTA_AMBER_HOVER = "#f59e0b"; // Tailwind amber-500
+const CTA_AMBER_BASE = "#fbbf24"; 
+const CTA_AMBER_HOVER = "#f59e0b"; 
 
-// Hero background (Baby Blue)
 const HERO_BABY_BLUE = "#e0f7fa"; 
 
-// --- Image Slider Component ---
 const DispImages = () => {
   const images = [
     "/images/5.jpg",
@@ -61,7 +55,6 @@ const DispImages = () => {
     return () => clearInterval(interval);
   }, [images.length]);
 
-  // Updated transition for a more refined 3D flip effect
   const flipVariants = {
     initial: { rotateY: -90, opacity: 0 },
     animate: { rotateY: 0, opacity: 1 },
@@ -70,9 +63,8 @@ const DispImages = () => {
 
   return (
     <motion.div
-      // CHANGED: Increased height from h-[400px] to h-[500px]
       className="relative w-full max-w-[600px] h-[500px] flex items-center justify-center bg-white rounded-3xl shadow-2xl overflow-hidden ring-4 transition-all duration-700"
-      style={{ borderColor: NEW_BLUE_500 }} // Apply new blue to ring
+      style={{ borderColor: NEW_BLUE_500 }} 
     >
       <AnimatePresence mode="wait">
         <motion.img
@@ -93,23 +85,22 @@ const DispImages = () => {
   );
 };
 
-// --- Design Gallery Data ---
 const galleryItems = [
   {
     id: 1,
     title: "3D Bamboo Box Model",
     description:
       "The proprietary storage crate design focusing on optimal airflow, and stable stacking for extended onion shelf life.",
-    imagePath: "/images/bamboo box.jpeg", // PLACEHOLDER
+    imagePath: "/images/bamboo box.jpeg", 
     icon: Layers,
-    color: "text-green-600", // Keep green for this item
+    color: "text-green-600", 
   },
   {
     id: 2,
     title: "IoT Hardware Setup",
     description:
       "The sensor and connectivity unit, constantly monitoring environmentals like Temperature, Humidity, and Light (LDR).",
-    imagePath: "/images/storage.png", // PLACEHOLDER
+    imagePath: "/images/storage.png", 
     icon: Cpu,
     color: NEW_BLUE_600, 
   },
@@ -118,13 +109,12 @@ const galleryItems = [
     title: "UI Dashboard Prototype",
     description:
       "The digital interface for real-time data visualization, inventory management, automated alerts, and detailed historical reporting.",
-    imagePath: "/images/uiproto.png", // PLACEHOLDER
+    imagePath: "/images/uiproto.png", 
     icon: Monitor,
     color: ACCENT_COLOR_BASE, 
   },
 ];
 
-// --- Modal Component (Design Gallery) ---
 const DesignGalleryModal = ({ isOpen, onClose }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const currentItem = galleryItems[currentIndex];
@@ -141,7 +131,6 @@ const DesignGalleryModal = ({ isOpen, onClose }) => {
 
   if (!isOpen) return null;
 
-  // Animation variants for the image transition (simple fade/scale)
   const imageVariants = {
     initial: { opacity: 0, scale: 0.95 },
     animate: { opacity: 1, scale: 1, transition: { duration: 0.4 } },
@@ -149,7 +138,6 @@ const DesignGalleryModal = ({ isOpen, onClose }) => {
   };
 
   return (
-    // Backdrop
     <motion.div
       className="fixed inset-0 z-[100] bg-black bg-opacity-70 flex items-center justify-center p-4"
       initial={{ opacity: 0 }}
@@ -223,11 +211,6 @@ const DesignGalleryModal = ({ isOpen, onClose }) => {
   );
 };
 
-
-// Contact modal removed per request (Contact form and trigger handled externally or removed)
-
-
-// --- Home Component ---
 export default function Home() {
   const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState("home");
@@ -236,8 +219,6 @@ export default function Home() {
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
-
-  // Contact modal removed — no handlers needed
 
   const sectionIds = [
     "home","bamboobox","advantage","features","workflow","contact",
@@ -291,25 +272,24 @@ export default function Home() {
       activeSection === id
         ? `font-extrabold text-[${NEW_BLUE_700}]` 
         : isNavSolid
-        ? `text-gray-700 hover:text-gray-900` // Solid state colors
-        : `text-[${NEW_BLUE_700}] hover:text-[${NEW_BLUE_500}]` // Transparent state colors
+        ? `text-gray-700 hover:text-gray-900` 
+        : `text-[${NEW_BLUE_700}] hover:text-[${NEW_BLUE_500}]` 
     }`;
 
-  // Core Features (unchanged, but now with dark blue background on hover)
   const coreFeatures = [
     {
       title: "IoT Climate Automation",
       description:
         "Sensors constantly monitor temperature and humidity. Automatic exhaust fans engage to maintain optimal conditions, preventing sprouting and black mold.",
-      icon: <Thermometer className={`w-8 h-8`} style={{ color: NEW_BLUE_600 }} />, // New blue
-      color: `border-[${NEW_BLUE_500}]`, // New blue
+      icon: <Thermometer className={`w-8 h-8`} style={{ color: NEW_BLUE_600 }} />, 
+      color: `border-[${NEW_BLUE_500}]`, 
     },
     {
       title: "LDR Light Defense System",
       description:
         "The LDR sensor tracks cumulative light exposure. If the set threshold is exceeded, an immediate email alert is triggered to protect against damage.",
-      icon: <Zap className="w-8 h-8" style={{ color: ACCENT_COLOR_BASE }} />, // Dark Blue
-      color: `border-[${ACCENT_COLOR_BASE}]`, // Dark Blue
+      icon: <Zap className="w-8 h-8" style={{ color: ACCENT_COLOR_BASE }} />, 
+      color: `border-[${ACCENT_COLOR_BASE}]`, 
     },
     {
       title: "Optimized Bamboo Crates",
@@ -615,9 +595,9 @@ export default function Home() {
             <motion.div
               variants={itemVariants}
               transition={{ delay: 0.2 }}
-              className="p-8 bg-yellow-50 rounded-2xl border-l-4 border-yellow-500 shadow-lg"
+              className="p-8 bg-white-50 rounded-2xl border-l-4 border-blue-500 shadow-lg"
             >
-              <h4 className="text-2xl font-bold mb-3 flex items-center text-yellow-700">
+              <h4 className="text-2xl font-bold mb-3 flex items-center text-blue-700">
                 <BarChart2 className="w-6 h-6 mr-2" />
                 The Goal: Extended Shelf Life
               </h4>

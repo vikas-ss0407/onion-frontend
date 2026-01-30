@@ -151,7 +151,7 @@ export default function Signup() {
           Already have an account?{" "}
           <button
             type="button"
-            onClick={() => navigate("/")} // Assuming '/' is your login page
+            onClick={() => navigate("/login")} // Assuming '/' is your login page
             className="text-blue-700 font-semibold hover:text-blue-800 focus:outline-none"
           >
             Login
